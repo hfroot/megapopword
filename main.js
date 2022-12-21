@@ -1,8 +1,8 @@
+// Create an array of letters
+const letters = "AEIOU".repeat(4).concat("GMNRST".repeat(3)).concat("BCDFHJKLPQRSTVWXYZ").split("");
+
 function populateGrid() {
   const grid = document.getElementById("grid");
-
-  // Create an array of letters
-  const letters = "AEIOU".repeat(4).concat("GMNRST".repeat(3)).concat("BCDFHJKLPQRSTVWXYZ").split("");
 
   // Create 10 rows
   for (let i = 0; i < 10; i++) {
@@ -72,13 +72,58 @@ function addInteractivity() {
     }
   });
 
+  // // Add a mouseup event listener to the table
+  // document.addEventListener("mouseup", function(event) {
+  //   // Remove the mouseover event listener from the table
+  //   table.removeEventListener("mouseover", mouseoverHandler);
+
+  //   // Get the selected cells
+  //   let cells = Array.from(table.getElementsByClassName("selected"));
+
+  //   // Check if the word is valid
+  //   isWordValid(word).then(isValid => {
+  //     // If the word is valid, highlight the cells in blue
+  //     // Otherwise, highlight the cells in red
+  //     if (word.length > 3) {
+  //       for (let i = 0; i < cells.length; i++) {
+  //         cells[i].classList.remove("selected");
+  //         cells[i].classList.add(isValid ? "valid" : "invalid");
+  //       }
+  //       if (isValid) {
+  //         updateScore(cells.length)
+  //       }
+  //     } else {
+  //       // If the word is less than 3 letters long, just remove the "selected" class from the cells
+  //       for (let i = 0; i < cells.length; i++) {
+  //         cells[i].classList.remove("selected");
+  //       }
+  //     }
+
+  //     // After 1 second, remove the "valid" or "invalid" class from all cells
+  //     // and reset the word variable and word display
+  //     setTimeout(() => {
+  //       // Loop over the cells and apply the "valid" or "invalid" class
+  //       for (let i = 0; i < cells.length; i++) {
+  //         cells[i].classList.remove(isValid ? "valid" : "invalid");
+  //       }
+  //       if (isValid) {
+  //         // Replace the letters with new ones
+  //         for (let i = 0; i < cells.length; i++) {
+  //           cells[i].textContent = letters[Math.floor(Math.random() * letters.length)];
+  //         }
+  //       }
+  //       word = "";
+  //     }, 1000);
+  //   });
+  // });
+
   // Add a mouseup event listener to the table
   document.addEventListener("mouseup", function(event) {
     // Remove the mouseover event listener from the table
     table.removeEventListener("mouseover", mouseoverHandler);
 
     // Get the selected cells
-    let cells = Array.from(table.getElementsByClassName("selected"));
+    let cells = Array.from(document.getElementsByClassName("selected"));
 
     // Check if the word is valid
     isWordValid(word).then(isValid => {
@@ -106,10 +151,17 @@ function addInteractivity() {
         for (let i = 0; i < cells.length; i++) {
           cells[i].classList.remove(isValid ? "valid" : "invalid");
         }
+        if (isValid) {
+          // Replace the letters with new ones
+          for (let i = 0; i < cells.length; i++) {
+            cells[i].textContent = letters[Math.floor(Math.random() * letters.length)];
+          }
+        }
         word = "";
       }, 1000);
-    });
+    })
   });
+
 
   // Mouseover event handler function
   function mouseoverHandler(event) {

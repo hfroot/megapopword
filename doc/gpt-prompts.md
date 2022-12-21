@@ -2126,3 +2126,128 @@ To use this function, you can call it and pass in the number of points to add to
 updateScore(10);
 
 I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+Once the valid word is unhighlighted, replace the letters with new randomly generated letters
+
+Certainly! Here is a modified version of the mouseup event listener that will unhighlight the valid word and replace the letters with new randomly generated letters:
+
+// Add a mouseup event listener to the table
+table.addEventListener("mouseup", function(event) {
+  // Get the selected cells
+  let cells = document.getElementsByClassName("selected");
+
+  // If the selected cells form a valid word of 4 or more letters
+  if (isValid && cells.length >= 4) {
+    // Update the score
+    updateScore(cells.length);
+
+    // Replace the letters with new ones
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].textContent = letters[Math.floor(Math.random() * letters.length)];
+    }
+  }
+
+  // Remove the mouseover event listener from the table
+  table.removeEventListener("mouseover", mouseoverHandler);
+
+  // Remove the "selected" class from all cells
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove("selected");
+    cells[i].classList.remove("valid");
+    cells[i].classList.remove("invalid");
+  }
+});
+
+This code gets a reference to all the cells that have the "selected" class, and checks if they form a valid word of 4 or more letters. If they do, it updates the score and replaces the letters with new ones by assigning a random letter from the letters array to each cell. It then removes the "selected", "valid", and "invalid" classes from all the cells.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+Great, now, instead of replacing the letters with new generated letters, replace all the letters with the letter from the cell above it. At the top rows, generate letters whereever needed
+
+Certainly! Here is a modified version of the mouseup event listener that will shift the letters down and generate new letters at the top rows:
+
+// Add a mouseup event listener to the table
+table.addEventListener("mouseup", function(event) {
+  // Get the selected cells
+  let cells = document.getElementsByClassName("selected");
+
+  // If the selected cells form a valid word of 4 or more letters
+  if (isValid && cells.length >= 4) {
+    // Update the score
+    updateScore(cells.length);
+
+    // Shift the letters down and generate new ones at the top rows
+    for (let i = 0; i < cells.length; i++) {
+      let row = cells[i].parentElement;
+      let column = cells[i].cellIndex;
+      let above = row.previousElementSibling;
+      if (above) {
+        cells[i].textContent = above.cells[column].textContent;
+      } else {
+        cells[i].textContent = letters[Math.floor(Math.random() * letters.length)];
+      }
+    }
+  }
+
+  // Remove the mouseover event listener from the table
+  table.removeEventListener("mouseover", mouseoverHandler);
+
+  // Remove the "selected" class from all cells
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove("selected");
+    cells[i].classList.remove("valid");
+    cells[i].classList.remove("invalid");
+  }
+});
+
+This code gets a reference to all the cells that have the "selected" class, and checks if they form a valid word of 4 or more letters. If they do, it updates the score and shifts the letters down. It does this by getting a reference to the row and column of each cell, and then getting a reference to the cell above it. If there is a cell above it, it sets the text content of the cell to the text content of the cell above it. If there is no cell above it, it generates a new letter. It then removes the "selected", "valid", and "invalid" classes from all the cells.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+Could you modify the following code so that the all of the column of letters is updated to reflect the removal of the valid letter
+          // Shift the letters down and generate new ones at the top rows
+          for (let i = 0; i < cells.length; i++) {
+            let row = cells[i].parentElement;
+            let column = cells[i].cellIndex;
+            let above = row.previousElementSibling;
+            if (above) {
+              cells[i].textContent = above.cells[column].textContent;
+            } else {
+              cells[i].textContent = letters[Math.floor(Math.random() * letters.length)];
+            }
+          }
+
+Here is the modified code to update all cells in the same column as the removed valid word:
+
+  // Shift the letters down and generate new ones at the top rows
+  for (let i = 0; i < cells.length; i++) {
+    let row = cells[i].parentElement;
+    let column = cells[i].cellIndex;
+    let above = row.previousElementSibling;
+    while (above) {
+      cells[i].textContent = above.cells[column].textContent;
+      above = above.previousElementSibling;
+      i += 10; // move to the next cell in the same column
+    }
+    cells[i].textContent = letters[Math.floor(Math.random() * letters.length)];
+  }
+
+This code will loop through all the cells in the table and check if there is a cell above it. If there is, it will copy the content of the above cell to the current cell. If there isn't, it will generate a new random letter for the current cell. It will also move to the next cell in the same column by incrementing the i variable by 10 (since there are 10 rows and we want to move to the next cell in the same column). This will ensure that all the cells in the same column as the removed valid word are updated.
+stanley.root@gmail.com
+Fix the code in order to move every letter in the column above down by one
+
+To update all the cells in a column so that each cell moves down one row, you can use the following code:
+
+  // Shift the letters down and generate new ones at the top rows
+  for (let i = cells.length - 1; i >= 0; i--) {
+    let row = cells[i].parentElement;
+    let column = cells[i].cellIndex;
+    let below = row.nextElementSibling;
+    if (below) {
+      cells[i].textContent = below.cells[column].textContent;
+    } else {
+      cells[i].textContent = letters[Math.floor(Math.random() * letters.length)];
+    }
+  }
+
+This code will loop through all the cells in the table in reverse order (starting from the bottom row) and check if there is a cell below it. If there is, it will copy the content of the below cell to the current cell. If there isn't, it will generate a new random letter for the current cell. This will ensure that all the cells in the same column as the removed valid word are updated and that each cell moves down one row.
