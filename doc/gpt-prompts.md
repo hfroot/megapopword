@@ -153,3 +153,69 @@ The script element at the bottom of the body element links to a JavaScript file 
 You can use this template as a starting point for your game and customize it to fit your specific needs. For example, you can add additional elements to the head and body elements to include additional content or metadata.
 
 I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+We would like to modify the generated code. Please center the grid both horizontally and vertically
+
+To center the grid both horizontally and vertically, you can use the display: flex and align-items: center properties in the CSS for the #grid element.
+
+Here is an example of how you can modify the CSS to center the grid:
+
+#grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 33%;
+  margin: 0 auto;
+  background-color: darkgreen;
+}
+
+The display: flex property specifies that the element should be a flex container, and the align-items: center property centers the flex items along the vertical axis. The justify-content: center property centers the flex items along the horizontal axis.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+We've copied this css into our css, but it hasn't vertically aligned the grid on the screen, do you know what could be wrong?
+
+There could be several reasons why the grid is not vertically aligned on the screen. Here are a few potential issues to check:
+
+    Make sure that the #grid element is a direct child of the body element, or that it is nested within an element that has a defined height and display: flex property. If the parent element does not have a defined height, the #grid element will not be vertically centered.
+
+    Check the height of the #grid element. If the height of the element is larger than the viewport, the element may not be vertically centered. You can set the height of the element to a percentage value to ensure that it scales with the size of the viewport.
+
+    Make sure that there are no other styles that are conflicting with the align-items: center property. You can use the browser's developer tools to inspect the element and see if any other styles are being applied.
+
+I hope these suggestions help! If you are still having issues, please provide more information about your code and I will try to assist further.
+stanley.root@gmail.com
+How do we give the body element a defined height?
+
+To give the body element a defined height, you can set the height property in the CSS for the body element.
+
+Here is an example of how you can set the height of the body element to 100% of the viewport:
+
+body {
+  height: 100%;
+}
+
+This will ensure that the body element takes up the full height of the viewport. You can also specify a fixed height in pixels or other units if needed.
+
+It's also important to note that if the body element is not a direct parent of the #grid element, you will need to set the height property for the intermediate parent elements as well.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+The height of the body still doesn't take up the full height of the screen in firefox
+
+If the body element is not taking up the full height of the screen in Firefox, it could be due to the default margin applied to the body element by the browser.
+
+You can remove the margin from the body element by setting the margin property to 0 in the CSS:
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+This will remove the default margin and allow the body element to take up the full height of the screen.
+
+Alternatively, you can use a reset stylesheet to remove the default margins and padding applied by the browser to various elements. This can be helpful if you want to ensure that your layout is consistent across different browsers.
+
+I hope this helps! Let me know if you have any questions.

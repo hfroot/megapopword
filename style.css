@@ -1,5 +1,12 @@
+body {
+  height: 100%;
+  margin: 0;
+}
+
 #grid {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   width: 33%;
   margin: 0 auto;
