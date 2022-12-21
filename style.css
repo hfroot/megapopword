@@ -10,26 +10,20 @@ body {
   margin: 0;
 }
 
-#grid {
-  display: flex;
-  flex-wrap: wrap;
-  width: 33%;
-  background-color: darkgreen;
-}
-
-
-.row {
-  display: flex;
-  width: 100%;
-}
-
-.cell {
+table {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 33%;
+  height: 100%;
+  background-color: darkgreen;
+}
+
+td {
+  display: block;
   width: 10%;
   height: 10%;
-  background-color: darkgreen;
   color: white;
-  line-height: 1;
+  text-align: center;
 }
+

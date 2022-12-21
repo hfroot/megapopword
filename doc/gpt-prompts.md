@@ -367,3 +367,182 @@ To fix the issue, you can set the line-height property to 1 in the CSS for the .
 This will set the line-height to the default value of 1, which should remove the vertical shift.
 
 I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+Instead of using div elements, can you use a table ?
+
+Yes, you can use a table to create the grid of letters instead of div elements.
+
+Here is an example of how you can modify the HTML and JavaScript code to use a table:
+
+HTML
+
+<table id="grid">
+  <!-- Create 10 rows -->
+  <tr>
+    <!-- Create 10 cells -->
+    <td></td>
+    <td></td>
+    <!-- ... -->
+  </tr>
+  <!-- Create 10 rows -->
+  <tr>
+    <!-- Create 10 cells -->
+    <td></td>
+    <td></td>
+    <!-- ... -->
+  </tr>
+  <!-- ... -->
+</table>
+
+JavaScript
+
+const grid = document.getElementById("grid");
+
+// Create an array of letters
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+// Create 10 rows
+for (let i = 0; i < 10; i++) {
+  const row = document.createElement("tr");
+
+  // Create 10 cells
+  for (let j = 0; j < 10; j++) {
+    const cell = document.createElement("td");
+
+    // Select a random letter from the letters array and assign it to the cell
+    cell.textContent = letters[Math.floor(Math.random() * letters.length)];
+
+    row.appendChild(cell);
+  }
+
+  grid.appendChild(row);
+}
+
+In this example, the HTML uses table,
+stanley.root@gmail.com
+there are a couple of problems with the output. 1. the letters are not white, 2. the grid is 5 x 20 instead of 10 x 10
+
+There are a few potential reasons why the letters are not white and the grid is not 10 x 10:
+
+    Make sure that the CSS for the td element has the color property set to white.
+
+    Make sure that the td element has a defined width and height. If the dimensions are not set, the cells may not be displayed correctly.
+
+    Check for any syntax errors in the HTML and JavaScript code. If there are syntax errors, the code may not be executed correctly and the grid may not be displayed as intended.
+
+    Make sure that the grid element has a defined width and height. If the dimensions are not set, the grid may not be displayed correctly.
+
+I hope these suggestions help! If you are still having issues, please provide more information about your code and I will try to assist further.
+stanley.root@gmail.com
+can you update the previous css code to target the new table element and cells ?
+
+Sure! Here is an example of how you can update the CSS code to target the table and td elements:
+
+table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  height: 100%;
+  background-color: darkgreen;
+}
+
+td {
+  width: 10%;
+  height: 10%;
+  color: white;
+  text-align: center;
+}
+
+In this example, the display: flex, align-items: center, and justify-content: center properties are applied to the table element to center the grid horizontally and vertically. The width and height properties of the table element are set to 33% and 100%, respectively, to make the grid occupy one third of the screen and take up the full height of the viewport.
+
+The width and height properties of the td element are set to 10% to make each cell occupy a 10 x 10 grid. The color property is set to white to make the letters white, and the text-align: center property centers the letters within the cells.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+Ok, starting again. Please generate the html, css and javascript to display a 10 x 10 table of random letters on the screen. The letters should be white and the background of the table should be green.
+
+Sure! Here is an example of how you can create a 10 x 10 table of random letters using HTML, CSS, and JavaScript:
+
+HTML
+
+<table id="grid">
+  <!-- Create 10 rows -->
+  <tr>
+    <!-- Create 10 cells -->
+    <td></td>
+    <td></td>
+    <!-- ... -->
+  </tr>
+  <!-- Create 10 rows -->
+  <tr>
+    <!-- Create 10 cells -->
+    <td></td>
+    <td></td>
+    <!-- ... -->
+  </tr>
+  <!-- ... -->
+</table>
+
+CSS
+
+table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  height: 100%;
+  background-color: darkgreen;
+}
+
+td {
+  width: 10%;
+  height: 10%;
+  color: white;
+  text-align: center;
+}
+
+JavaScript
+
+const grid = document.getElementById("grid");
+
+// Create an array of letters
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+// Create 10 rows
+for (let i = 0; i < 10; i++) {
+  const row = document.createElement("tr");
+
+  // Create 10 cells
+  for (let j = 0; j < 10; j++) {
+    const cell = document.createElement("td");
+
+    // Select a random letter from the letters array and assign it to the cell
+    cell.textContent = letters[Math.floor(Math.random() * letters.length)];
+
+    row.appendChild(cell);
+  }
+
+  grid.appendChild(row);
+}
+
+In this example, the HTML creates an empty table element with 10 rows and 10 cells. The CSS
+stanley.root@gmail.com
+using the code above, the letters are all appearing in one line. How do we fix this?
+
+If the letters are appearing in a single line, it could be because the td elements are not displayed as block-level elements by default.
+
+To fix this issue, you can set the display property of the td element to block in the CSS:
+
+td {
+  display: block;
+  width: 10%;
+  height: 10%;
+  color: white;
+  text-align: center;
+}
+
+This will make the td elements behave as block-level elements, which should fix the issue with the letters appearing in a single line.
+
+I hope this helps! Let me know if you have any questions.

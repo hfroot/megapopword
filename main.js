@@ -5,13 +5,11 @@ const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 // Create 10 rows
 for (let i = 0; i < 10; i++) {
-  const row = document.createElement("div");
-  row.classList.add("row");
+  const row = document.createElement("tr");
 
   // Create 10 cells
   for (let j = 0; j < 10; j++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
+    const cell = document.createElement("td");
 
     // Select a random letter from the letters array and assign it to the cell
     cell.textContent = letters[Math.floor(Math.random() * letters.length)];
