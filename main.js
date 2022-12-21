@@ -102,7 +102,8 @@ function addInteractivity() {
           cells[i].classList.add(isValid ? "valid" : "invalid");
         }
         if (isValid) {
-          updateScore(cells.length)
+          updateScore(cells.length);
+          playWordSound();
         }
       } else {
         // If the word is less than 3 letters long, just remove the "selected" class from the cells
@@ -257,5 +258,20 @@ function updateHighScoreMaybe() {
   if (currentScore > highScore) {
     // Update the high score
     highScoreElement.textContent = currentScore;
+    playHighScoreSound();
   }
+}
+
+function playWordSound() {
+  // Get a reference to the audio element
+  let audio = document.getElementById("word-sound");
+  console.log(audio)
+  // const audioElement = new Audio("/sounds/word.wav");
+  audio.play();
+}
+
+function playHighScoreSound() {
+  // Get a reference to the audio element
+  let audio = document.getElementById("highscore-sound");
+  audio.play();
 }

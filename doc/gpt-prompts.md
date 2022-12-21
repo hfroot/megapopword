@@ -2855,3 +2855,113 @@ For example, you could use the following code to update the highscore to 100:
 let highscoreValue = document.getElementById("highscore-value");
 highscoreValue.textContent = 100;
 
+stanley.root@gmail.com
+Can we play a little bell sound everytime the user gets a word?
+
+Certainly! Here is some code that you can use to play a bell sound every time the user gets a word:
+
+// Get a reference to the audio element
+let audio = document.getElementById("bell");
+
+// Add an event listener to play the audio when the user gets a word
+document.addEventListener("gotWord", function() {
+  audio.play();
+});
+
+To use this code, you will need to add an audio element to your HTML with the bell id, like this:
+
+<audio id="bell" src="bell.mp3"></audio>
+
+Replace bell.mp3 with the path to your audio file. You can use any audio file format that is supported by the audio element, such as MP3, WAV, or OGG.
+
+You will also need to trigger the gotWord event whenever the user gets a word. You can do this by calling document.dispatchEvent(new Event("gotWord")) whenever a word is found.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+Where can I find sound effects that are free to use?
+
+There are several websites that offer free sound effects that you can use in your projects. Some options include:
+
+    Freesound: This website offers a large collection of free sound effects that are available for use under the Creative Commons 0 license. You can search for sounds by keyword or browse the available categories.
+
+    SoundBible: This website offers a wide range of free sound effects that are available for personal and commercial use. You can search for sounds by keyword or browse the available categories.
+
+    Zapsplat: This website offers a large collection of free sound effects that are available for personal and commercial use. You can search for sounds by keyword or browse the available categories.
+
+    Free SFX: This website offers a variety of free sound effects that are available for personal and commercial use. You can search for sounds by keyword or browse the available categories.
+
+    Free To Use Sounds: This website offers a collection of free sound effects that are available for personal and commercial use. You can search for sounds by keyword or browse the available categories.
+
+stanley.root@gmail.com
+which of these sites do not require an account?
+
+There are many websites that offer free sound effects that do not require an account. Some options include:
+
+    freesound.org
+    zapsplat.com
+    soundsnap.com
+    soundbible.com
+    freesfx.co.uk
+    audiomicro.com
+
+Please be aware that while these sites offer free sound effects, you may still need to credit the creator of the sound in your project. It's always a good idea to check the specific terms of use for each sound before using it in your project.
+stanley.root@gmail.com
+where should I put the audio files in my project
+
+To include an audio file in your project, you can simply create an audio element and set the src attribute to the URL of the audio file. For example:
+
+<audio src="path/to/my-audio-file.mp3"></audio>
+
+You can then control the audio using the audio element's methods and properties, such as play(), pause(), and currentTime.
+
+As for where to put the audio files in your project, it depends on your project's structure. A common approach is to create a separate /sounds or /audio directory in your project and store the audio files there. You can then use a relative path to reference the audio files in your HTML or JavaScript code. For example, if you have an audio file stored at /sounds/bell.mp3, you can reference it in your HTML like this:
+
+<audio src="/sounds/bell.mp3"></audio>
+
+Keep in mind that if you are serving your project from a server, you will need to ensure that the server is configured to serve the audio files.
+stanley.root@gmail.com
+is wav a suitable file format ?
+
+WAV is a suitable file format for sound effects and audio. It is a widely supported format that can be played on most devices and platforms. WAV files are also known for their high-quality audio and are often used for professional audio applications. However, WAV files can be quite large in size, so you may want to consider using a different file format such as MP3 or OGG if you need to save on file size or bandwidth.
+stanley.root@gmail.com
+Why do I get the error: Uncaught (in promise) DOMException: The media resource indicated by the src attribute or assigned media provider object was not suitable.
+
+There could be a few reasons why you might get this error. Here are a few things to check:
+
+    Make sure the file path to your audio file is correct. You can try using an absolute path to the file to see if that fixes the issue.
+
+    Make sure the file format of your audio file is supported by your browser. Some browsers may not support certain file formats, like WAV or Ogg. You can try using a different file format, like MP3, to see if that fixes the issue.
+
+    Make sure the audio file is not corrupt. You can try playing the file in a media player to see if it works. If it doesn't play in the media player, then it might be corrupt and you'll need to find a new copy of the file.
+
+    Make sure the audio file is not being blocked by your browser. Some browsers have security features that block certain types of audio files from playing. You can try disabling any security features or extensions that might be blocking the audio file.
+
+    Make sure the audio file is not being blocked by your firewall or antivirus software. You can try temporarily disabling these programs to see if they are the cause of the issue.
+
+If none of these solutions fix the issue, it might be worth checking the browser console for more detailed error messages. This might give you a better idea of what the issue is and how to fix it.
+stanley.root@gmail.com
+tell me more about the play method on the dom element
+
+The play() method of the HTMLAudioElement interface is used to begin playback of an audio file, or to resume playback if it has been paused. It returns a Promise object that is resolved when the audio file has started playing, or is rejected if the audio file failed to play.
+
+Here is an example of using the play() method:
+
+const audioElement = document.getElementById("myAudio");
+
+audioElement.play()
+  .then(() => {
+    console.log("Audio playback started");
+  })
+  .catch((error) => {
+    console.log("Audio playback failed: ", error);
+  });
+
+Note that the play() method may be blocked if the user has not interacted with the page, or if the audio file is being played from an insecure origin. To play audio automatically, you can use the autoplay attribute on the audio element in the HTML, or you can use the play() method in a user gesture event handler, such as a click event handler.
+
+<audio src="myAudio.mp3" autoplay></audio>
+
+document.getElementById("myButton").addEventListener("click", () => {
+  const audioElement = document.getElementById("myAudio");
+  audioElement.play();
+});
+
