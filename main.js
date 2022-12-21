@@ -5,7 +5,10 @@ const ordinaryConsonants = "BCDFHLPVWY".repeat(2)
 const devilishConsonants = "JKQXZ"
 const letters = vowels.concat(usefulConsonants).concat(ordinaryConsonants).concat(devilishConsonants).split("");
 
-const MAX_TIME = 3 * 60 * 1000;
+const MINUTES = 3;
+const MAX_TIME = MINUTES * 60 * 1000;
+
+let highScore = 0; // global variable to store the high score
 
 function populateGrid() {
   const grid = document.getElementById("grid");
@@ -50,6 +53,7 @@ function startTimer() {
       clearInterval(interval);
       disableTable();
       enableNewGameButton();
+      updateHighScoreMaybe();
     }
   }, 1000);
 }
@@ -238,4 +242,20 @@ function enableNewGameButton() {
 function disableNewGameButton() {
   const newGameButton = document.getElementById("newGameButton");
   newGameButton.disabled = true
+}
+
+function updateHighScoreMaybe() {
+  // Get references to the score and high score elements
+  let scoreElement = document.getElementById("score");
+  let highScoreElement = document.getElementById("highscore");
+
+  // Get the current score and high score as integers
+  let currentScore = parseInt(scoreElement.textContent, 10);
+  let highScore = parseInt(highScoreElement.textContent, 10);
+
+  // If the current score is higher than the high score
+  if (currentScore > highScore) {
+    // Update the high score
+    highScoreElement.textContent = currentScore;
+  }
 }

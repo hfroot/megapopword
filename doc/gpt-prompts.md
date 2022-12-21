@@ -2744,3 +2744,114 @@ button.addEventListener("click", function() {
   score = 0;
 });
 
+stanley.root@gmail.com
+Generate an element to contain the high score, similar to the score element except with the prefix "Highscore:"
+
+Here is the HTML element for a highscore container:
+
+<div id="highscore">
+  Highscore: 0
+</div>
+
+You can style it similarly to the score element using CSS. You can also update the highscore value by modifying the text content of the highscore element. For example:
+
+let highscore = document.getElementById("highscore");
+highscore.textContent = "Highscore: 100";
+
+stanley.root@gmail.com
+We want to track the highscore across all games played. This should be displayed on screen. When a score is achieved that is higher than this highscore, then the highscore is replaced.
+
+To track the high score across all games played, you can use a global variable to store the high score. This variable can be initialized to 0 when the page loads.
+
+Then, every time a new game is started, you can compare the current score to the high score. If the current score is higher, you can update the high score and update the high score display element with the new high score.
+
+Here is some sample code that demonstrates how this can be done:
+
+let highScore = 0; // global variable to store the high score
+
+// Get a reference to the score and high score display elements
+let scoreDisplay = document.getElementById("score");
+let highScoreDisplay = document.getElementById("high-score");
+
+// Add a click event listener to the new game button
+let newGameButton = document.getElementById("new-game");
+newGameButton.addEventListener("click", function() {
+  // Reset the current score to 0
+  let currentScore = 0;
+  scoreDisplay.textContent = "Score: 0";
+
+  // Reset the timer
+  let timer = 3 * 60; // 3 minutes in seconds
+  let timerDisplay = document.getElementById("timer");
+  timerDisplay.textContent = "Timer: 3:00";
+
+  // Compare the current score to the high score
+  if (currentScore > highScore) {
+    // Update the high score
+    highScore = currentScore;
+
+    // Update the high score display element
+    highScoreDisplay.textContent = "Highscore: " + highScore;
+  }
+});
+
+Note that this code is just a sample and you will need to modify it to fit your specific needs. You may also need to add additional code to handle the countdown timer and updating the current score as the game is played.
+stanley.root@gmail.com
+Thanks, can you modify the above code because the score is stored in it's own span element, and make the highscore also stored in it's own span element
+
+Certainly! Here is the modified code:
+
+let scoreSpan = document.getElementById("score");
+let highscoreSpan = document.getElementById("highscore");
+
+let currentScore = 0;
+let highscore = 0;
+
+function updateScore(amount) {
+  currentScore += amount;
+  scoreSpan.textContent = currentScore;
+
+  if (currentScore > highscore) {
+    highscore = currentScore;
+    highscoreSpan.textContent = highscore;
+  }
+}
+
+Now, you can update the score by calling the updateScore function and passing in the amount to add to the current score. The highscore will automatically be updated if the new score is higher.
+stanley.root@gmail.com
+Can you parse the int from the score and highscore elements instead of storing them as global variables in javascript ?
+
+Certainly! Here is the updated code that retrieves the current score and high score from their respective span elements, parses them as integers, and compares the current score to the high score to determine if the high score should be updated:
+
+// Get references to the score and high score elements
+let scoreElement = document.getElementById("score");
+let highScoreElement = document.getElementById("high-score");
+
+// Get the current score and high score as integers
+let currentScore = parseInt(scoreElement.textContent, 10);
+let highScore = parseInt(highScoreElement.textContent, 10);
+
+// If the current score is higher than the high score
+if (currentScore > highScore) {
+  // Update the high score
+  highScore = currentScore;
+  highScoreElement.textContent = highScore;
+}
+
+This code can be added wherever you want to check and potentially update the high score.
+stanley.root@gmail.com
+can you generate the html for the highscore element using this span element ?
+
+Sure, here's the HTML code for the highscore element using the span element:
+
+<div id="highscore">
+  Highscore: <span id="highscore-value">0</span>
+</div>
+
+This will create a div element with the text "Highscore:" followed by a span element containing the highscore value, which is initially set to 0. You can then use JavaScript to update the value of the highscore by accessing the span element and setting its textContent property.
+
+For example, you could use the following code to update the highscore to 100:
+
+let highscoreValue = document.getElementById("highscore-value");
+highscoreValue.textContent = 100;
+
