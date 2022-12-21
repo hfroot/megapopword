@@ -2,7 +2,7 @@ function populateGrid() {
   const grid = document.getElementById("grid");
 
   // Create an array of letters
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const letters = "AEIOU".repeat(4).concat("GMNRST".repeat(3)).concat("BCDFHJKLPQRSTVWXYZ").split("");
 
   // Create 10 rows
   for (let i = 0; i < 10; i++) {
