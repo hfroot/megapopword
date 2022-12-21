@@ -1,5 +1,9 @@
 // Create an array of letters
-const letters = "AEIOU".repeat(4).concat("GMNRST".repeat(3)).concat("BCDFHJKLPQRSTVWXYZ").split("");
+const vowels = "AEIOU".repeat(4)
+const usefulConsonants = "GMNRST".repeat(3)
+const ordinaryConsonants = "BCDFHLPVWY".repeat(2)
+const devilishConsonants = "JKQXZ"
+const letters = vowels.concat(usefulConsonants).concat(ordinaryConsonants).concat(devilishConsonants).split("");
 
 function populateGrid() {
   const grid = document.getElementById("grid");
@@ -72,51 +76,6 @@ function addInteractivity() {
     }
   });
 
-  // // Add a mouseup event listener to the table
-  // document.addEventListener("mouseup", function(event) {
-  //   // Remove the mouseover event listener from the table
-  //   table.removeEventListener("mouseover", mouseoverHandler);
-
-  //   // Get the selected cells
-  //   let cells = Array.from(table.getElementsByClassName("selected"));
-
-  //   // Check if the word is valid
-  //   isWordValid(word).then(isValid => {
-  //     // If the word is valid, highlight the cells in blue
-  //     // Otherwise, highlight the cells in red
-  //     if (word.length > 3) {
-  //       for (let i = 0; i < cells.length; i++) {
-  //         cells[i].classList.remove("selected");
-  //         cells[i].classList.add(isValid ? "valid" : "invalid");
-  //       }
-  //       if (isValid) {
-  //         updateScore(cells.length)
-  //       }
-  //     } else {
-  //       // If the word is less than 3 letters long, just remove the "selected" class from the cells
-  //       for (let i = 0; i < cells.length; i++) {
-  //         cells[i].classList.remove("selected");
-  //       }
-  //     }
-
-  //     // After 1 second, remove the "valid" or "invalid" class from all cells
-  //     // and reset the word variable and word display
-  //     setTimeout(() => {
-  //       // Loop over the cells and apply the "valid" or "invalid" class
-  //       for (let i = 0; i < cells.length; i++) {
-  //         cells[i].classList.remove(isValid ? "valid" : "invalid");
-  //       }
-  //       if (isValid) {
-  //         // Replace the letters with new ones
-  //         for (let i = 0; i < cells.length; i++) {
-  //           cells[i].textContent = letters[Math.floor(Math.random() * letters.length)];
-  //         }
-  //       }
-  //       word = "";
-  //     }, 1000);
-  //   });
-  // });
-
   // Add a mouseup event listener to the table
   document.addEventListener("mouseup", function(event) {
     // Remove the mouseover event listener from the table
@@ -147,16 +106,14 @@ function addInteractivity() {
       // After 1 second, remove the "valid" or "invalid" class from all cells
       // and reset the word variable and word display
       setTimeout(() => {
-        // Loop over the cells and apply the "valid" or "invalid" class
+        // Remove the text content of the cells
         for (let i = 0; i < cells.length; i++) {
+          if (cells[i].classList.contains("valid")) {
+            cells[i].textContent = "";
+          }
           cells[i].classList.remove(isValid ? "valid" : "invalid");
         }
-        if (isValid) {
-          // Replace the letters with new ones
-          for (let i = 0; i < cells.length; i++) {
-            cells[i].textContent = letters[Math.floor(Math.random() * letters.length)];
-          }
-        }
+        descendColumns()
         word = "";
       }, 1000);
     })
@@ -206,4 +163,43 @@ function updateScore(points) {
 
   // Update the score element with the new score
   scoreElement.textContent = score;
+}
+
+async function descendColumns() {
+  // Get a reference to the table element
+  let table = document.getElementById("grid");
+  // Get the rows of the table
+  let rows = table.getElementsByTagName("tr");
+
+  // Loop through the rows from the bottom to the top
+  for (let i = rows.length - 1; i >= 0; i--) {
+    // Get the cells in the current row
+    let cells = rows[i].getElementsByTagName("td");
+
+    // Loop through the cells in the current row
+    for (let j = 0; j < cells.length; j++) {
+      // If the cell is empty
+      if (!cells[j].textContent) {
+        // Find the first cell in the column above the current cell that has text content
+        let above = cells[j].parentElement.previousElementSibling;
+        while (above && !above.cells[j].textContent) {
+          above = above.previousElementSibling;
+        }
+
+        // If a cell was found
+        if (above) {
+          // Copy the text content of the found cell into the current cell
+          cells[j].textContent = above.cells[j].textContent;
+
+          // Remove the text content of the found cell
+          above.cells[j].textContent = "";
+        } else {
+          // Generate a new letter for the current cell
+          cells[j].textContent = letters[Math.floor(Math.random() * letters.length)];
+        }
+      }
+    }
+    // Add a delay of 500 milliseconds (half a second) before continuing the loop
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
 }
