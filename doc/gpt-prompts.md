@@ -1326,3 +1326,219 @@ function mouseoverHandler(event) {
 In this example, the mouseup event listener is attached to the document element instead of the table element. This allows the event to be fired even if the mouse is released outside of the table.
 
 I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+We want to be able to check if the highlighted word is a valid word. How do we do this?
+!
+
+Error in body stream
+
+stanley.root@gmail.com
+We want to be able to check if the highlighted word is a valid word. How can we track the word that is being created as the user moves their mouse?
+
+To track the word that is being created as the user moves the mouse, you can add a word variable to your script and update it as the mouse is dragged over different table cells. Here is an example of how you can do this:
+
+// Get a reference to the table element
+let table = document.getElementById("myTable");
+
+// Initialize the word variable
+let word = "";
+
+// Add a mousedown event listener to the table
+table.addEventListener("mousedown", function(event) {
+  // Get the target element that was clicked
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    // Add the "selected" class to the cell
+    target.classList.add("selected");
+
+    // Update the word variable with the letter in the cell
+    word += target.textContent;
+
+    // Add a mouseover event listener to the table
+    table.addEventListener("mouseover", mouseoverHandler);
+  }
+});
+
+// Add a mouseup event listener to the document
+document.addEventListener("mouseup", function(event) {
+  // Remove the mouseover event listener from the table
+  table.removeEventListener("mouseover", mouseoverHandler);
+
+  // Highlight all the selected cells for one second
+  let cells = table.getElementsByTagName("td");
+  for (let i = 0; i < cells.length; i++) {
+    if (cells[i].classList.contains("selected")) {
+      cells[i].classList.add("highlighted");
+    }
+  }
+
+  setTimeout(() => {
+    // Remove the "highlighted" and "selected" classes from all cells
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].classList.remove("highlighted");
+      cells[i].classList.remove("selected");
+    }
+
+    // Reset the word variable
+    word = "";
+  }, 1000);
+});
+
+// Mouseover event handler function
+function mouseoverHandler(event) {
+  // Get the target element that the mouse is over
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    // Add the "selected" class to the cell
+    target.classList.add("selected");
+
+    // Update the word variable with the letter in the cell
+    word += target.textContent;
+  }
+}
+
+In this example, the word variable is initialized to an empty string, and the mousedown and mouseover event listeners update the word variable with the letters in the selected cells. The mouseup event listener resets the word variable after the highlight animation has completed.
+
+You can then use the word variable to check if the highlighted word is a valid word. For example, you could use a dictionary API or a local dictionary to check if the word exists.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+I would like to display the word variable on the screen
+
+Certainly! Here is an example of how you can display the word variable on the screen:
+
+// Get a reference to the table element
+let table = document.getElementById("myTable");
+
+// Initialize the word variable
+let word = "";
+
+// Get a reference to the word display element
+let wordDisplay = document.getElementById("word-display");
+
+// Add a mousedown event listener to the table
+table.addEventListener("mousedown", function(event) {
+  // Get the target element that was clicked
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    // Add the "selected" class to the cell
+    target.classList.add("selected");
+
+    // Update the word variable with the letter in the cell
+    word += target.textContent;
+
+    // Update the word display element with the current word
+    wordDisplay.textContent = word;
+
+    // Add a mouseover event listener to the table
+    table.addEventListener("mouseover", mouseoverHandler);
+  }
+});
+
+// Add a mouseup event listener to the document
+document.addEventListener("mouseup", function(event) {
+  // Remove the mouseover event listener from the table
+  table.removeEventListener("mouseover", mouseoverHandler);
+
+  // Highlight all the selected cells for one second
+  let cells = table.getElementsByTagName("td");
+  for (let i = 0; i < cells.length; i++) {
+    if (cells[i].classList.contains("selected")) {
+      cells[i].classList.add("highlighted");
+    }
+  }
+
+  setTimeout(() => {
+    // Remove the "highlighted" and "selected" classes from all cells
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].classList.remove("highlighted");
+      cells[i].classList.remove("selected");
+    }
+
+    // Reset the word variable and update the word display element
+    word = "";
+    wordDisplay.textContent = word;
+  }, 1000);
+});
+
+// Mouseover event handler function
+function mouseoverHandler(event) {
+  // Get the target element that the mouse is over
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    // Add the "selected" class to the cell
+    target.classList.add("selected");
+
+    // Update the word variable with the letter in the cell
+    word += target.textContent;
+
+    // Update the word display element with the current word
+    wordDisplay.textContent = word;
+  }
+}
+
+In this example, the word variable is initialized to an empty string, and the mousedown and mouseover event listeners update the word variable with the letters in the selected cells. The mouseup event listener resets the word variable after the highlight animation has completed, and updates the word-display element with the current value of the word variable.
+
+You will need to add an element with an id of word-display to your HTML for this to work. For example:
+
+<
+
+stanley.root@gmail.com
+Could you repeat the html of the above response?
+
+Certainly! Here is the HTML code that goes along with the JavaScript code I provided in the previous response:
+
+<!-- The table element -->
+<table id="myTable">
+  <!-- Table rows and cells -->
+  <tr>
+    <td>A</td>
+    <td>B</td>
+    <td>C</td>
+    <td>D</td>
+    <!-- More cells -->
+  </tr>
+  <!-- More rows -->
+</table>
+
+<!-- The word display element -->
+<div id="word-display"></div>
+
+This HTML code creates a table with a myTable id and a div element with a word-display id. The myTable element represents the grid of letters, and the word-display element will be used to display the current word being created by the user.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+Instead of a div, can the word-display element use semantic html, and contain the prefix of "Word selected:"
+
+Certainly! Here is an example of how you can use semantic HTML for the word-display element and include the prefix "Word selected:":
+
+<!-- The table element -->
+<table id="myTable">
+  <!-- Table rows and cells -->
+  <tr>
+    <td>A</td>
+    <td>B</td>
+    <td>C</td>
+    <td>D</td>
+    <!-- More cells -->
+  </tr>
+  <!-- More rows -->
+</table>
+
+<!-- The word display element -->
+<p>
+  Word selected: <span id="word-display"></span>
+</p>
+
+In this example, the word-display element is a span element that is nested within a p element. The p element contains the prefix "Word selected:", and the span element will be used to display the current word being created by the user.
+
+I hope this helps! Let me know if you have any questions.

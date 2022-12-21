@@ -51,6 +51,12 @@ function addInteractivity() {
   // Get a reference to the table element
   let table = document.getElementById("grid");
 
+  // Initialize the word variable
+  let word = "";
+
+  // Get a reference to the word display element
+  let wordDisplay = document.getElementById("word-display");
+
   // Add a mousedown event listener to the table
   table.addEventListener("mousedown", function(event) {
     // Get the target element that was clicked
@@ -60,6 +66,12 @@ function addInteractivity() {
     if (target.tagName === "TD") {
       // Add the "selected" class to the cell
       target.classList.add("selected");
+
+      // Update the word variable with the letter in the cell
+      word += target.textContent;
+
+      // Update the word display element with the current word
+      wordDisplay.textContent = word;
 
       // Add a mouseover event listener to the table
       table.addEventListener("mouseover", mouseoverHandler);
@@ -85,6 +97,10 @@ function addInteractivity() {
         cells[i].classList.remove("highlighted");
         cells[i].classList.remove("selected");
       }
+
+      // Reset the word variable and update the word display element
+      word = "";
+      wordDisplay.textContent = word;
     }, 1000);
   });
 
@@ -97,6 +113,12 @@ function addInteractivity() {
     if (target.tagName === "TD") {
       // Add the "selected" class to the cell
       target.classList.add("selected");
+
+      // Update the word variable with the letter in the cell
+      word += target.textContent;
+
+      // Update the word display element with the current word
+      wordDisplay.textContent = word;
     }
   }
 }
