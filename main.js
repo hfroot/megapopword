@@ -54,9 +54,6 @@ function addInteractivity() {
   // Initialize the word variable
   let word = "";
 
-  // Get a reference to the word display element
-  let wordDisplay = document.getElementById("word-display");
-
   // Add a mousedown event listener to the table
   table.addEventListener("mousedown", function(event) {
     // Get the target element that was clicked
@@ -69,9 +66,6 @@ function addInteractivity() {
 
       // Update the word variable with the letter in the cell
       word += target.textContent;
-
-      // Update the word display element with the current word
-      wordDisplay.textContent = word;
 
       // Add a mouseover event listener to the table
       table.addEventListener("mouseover", mouseoverHandler);
@@ -110,7 +104,6 @@ function addInteractivity() {
           cells[i].classList.remove(isValid ? "valid" : "invalid");
         }
         word = "";
-        wordDisplay.textContent = word;
       }, 1000);
     });
   });
@@ -127,9 +120,6 @@ function addInteractivity() {
 
       // Update the word variable with the letter in the cell
       word += target.textContent;
-
-      // Update the word display element with the current word
-      wordDisplay.textContent = word;
     }
   }
 }
