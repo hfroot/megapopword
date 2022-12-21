@@ -2557,3 +2557,38 @@ I want to improve the following code. Starting from the top of the table, check 
 !
 
 An error occurred. If this issue persists please contact us through our help center at help.openai.com.
+
+stanley.root@gmail.com
+When the timer is up, the table should turn grey and not be interactive anymore.
+
+To make the table turn grey and not be interactive when the timer is up, you can add a class to the table element that sets the opacity to 0.5 and pointer-events to none. Then, you can use JavaScript to add this class to the table element when the timer is up.
+
+Here's an example of how you can do this:
+
+HTML:
+
+<table id="myTable" class="grid">
+  ...
+</table>
+
+CSS:
+
+.grid.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+JavaScript:
+
+// Get a reference to the table element
+let table = document.getElementById("myTable");
+
+// Add a class to the table element when the timer is up
+function disableTable() {
+  table.classList.add("disabled");
+}
+
+// Set the timer to call the disableTable function after 3 minutes
+setTimeout(disableTable, 3 * 60 * 1000);
+
+This will add the disabled class to the table element after 3 minutes, which will set the opacity to 0.5 and pointer-events to none. This will make the table appear grey and not be interactive.

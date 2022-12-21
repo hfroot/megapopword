@@ -60,3 +60,9 @@ td.valid {
 td.invalid {
   background-color: red;
 }
+
+#grid.disabled {
+  background-color: #888;
+  pointer-events: none;
+}
+

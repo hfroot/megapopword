@@ -43,9 +43,10 @@ function setupTimer() {
     // Decrement the time by 1000 milliseconds (1 second)
     time -= 1000;
 
-    // If the time reaches 0, stop the timer
+    // If the time reaches 0, stop the timer and disable the table
     if (time <= 0) {
       clearInterval(interval);
+      disableTable();
     }
   }, 1000);
 }
@@ -202,4 +203,10 @@ async function descendColumns() {
     // Add a delay of 500 milliseconds (half a second) before continuing the loop
     await new Promise(resolve => setTimeout(resolve, 100));
   }
+}
+
+// Add a class to the table element when the timer is up
+function disableTable() {
+  let table = document.getElementById("grid");
+  table.classList.add("disabled");
 }
