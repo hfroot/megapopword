@@ -78,34 +78,37 @@ function addInteractivity() {
     }
   });
 
-  // Add a mouseup event listener to the document
+  // Add a mouseup event listener to the table
   document.addEventListener("mouseup", function(event) {
     // Remove the mouseover event listener from the table
     table.removeEventListener("mouseover", mouseoverHandler);
 
+    // Get the selected cells
+    let cells = table.getElementsByClassName("selected");
+
+    // Check if the word is valid
     isWordValid(word).then(isValid => {
-      console.log(isValid); // Output: true
-    });
-
-    // Highlight all the selected cells for one second
-    let cells = table.getElementsByTagName("td");
-    for (let i = 0; i < cells.length; i++) {
-      if (cells[i].classList.contains("selected")) {
-        cells[i].classList.add("highlighted");
-      }
-    }
-
-    setTimeout(() => {
-      // Remove the "highlighted" and "selected" classes from all cells
+      // If the word is valid, highlight the cells in blue
+      // Otherwise, highlight the cells in red
       for (let i = 0; i < cells.length; i++) {
-        cells[i].classList.remove("highlighted");
         cells[i].classList.remove("selected");
+        cells[i].classList.add(isValid ? "valid" : "invalid");
       }
 
-      // Reset the word variable and update the word display element
-      word = "";
-      wordDisplay.textContent = word;
-    }, 1000);
+      // After 1 second, remove the "valid" or "invalid" class from all cells
+      // and reset the word variable and word display
+      setTimeout(() => {
+        if (cells.length > 0) {
+          // Loop over the cells and apply the "valid" or "invalid" class
+          for (let i = 0; i < cells.length; i++) {
+            cells[i].classList.remove("selected");
+            cells[i].classList.add(isValid ? "valid" : "invalid");
+          }
+        }
+        word = "";
+        wordDisplay.textContent = word;
+      }, 1000);
+    });
   });
 
   // Mouseover event handler function

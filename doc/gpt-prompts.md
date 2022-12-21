@@ -1750,3 +1750,183 @@ isWordValid("xyz").then(isValid => {
 });
 
 I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+Can you modify the code so that when the user releases the mouse, the letters are highlighted in blue for 1 second if the word is valid, and red otherwise
+
+Certainly! Here is a modified version of the code you provided earlier that highlights the letters in blue for 1 second if the word is valid and red otherwise:
+
+// Get a reference to the table element
+let table = document.getElementById("myTable");
+
+// Add a mousedown event listener to the table
+table.addEventListener("mousedown", function(event) {
+  // Get the target element that was clicked
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    // Add the "selected" class to the cell
+    target.classList.add("selected");
+
+    // Add a mouseover event listener to the table
+    table.addEventListener("mouseover", mouseoverHandler);
+  }
+});
+
+// Add a mouseup event listener to the table
+table.addEventListener("mouseup", function(event) {
+  // Remove the mouseover event listener from the table
+  table.removeEventListener("mouseover", mouseoverHandler);
+
+  // Get the word that was selected
+  let word = getSelectedWord();
+
+  // Check if the word is valid
+  isWordValid(word).then(isValid => {
+    // If the word is valid, highlight the cells in blue
+    // Otherwise, highlight the cells in red
+    let cells = table.getElementsByTagName("td");
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].classList.remove("selected");
+      cells[i].classList.add(isValid ? "valid" : "invalid");
+    }
+
+    // After 1 second, remove the "valid" or "invalid" class from the cells
+    setTimeout(() => {
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove("valid");
+        cells[i].classList.remove("invalid");
+      }
+    }, 1000);
+  });
+});
+
+// Mouseover event handler function
+function mouseoverHandler(event) {
+  // Get the target element that the mouse is over
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    //
+
+stanley.root@gmail.com
+could you give me the css for the valid and invalid classes?
+
+Certainly! Here is the CSS you can use to define the valid and invalid classes:
+
+td.valid {
+  background-color: blue;
+}
+
+td.invalid {
+  background-color: red;
+}
+
+This CSS will set the background color of the table cells to blue when the valid class is applied, and red when the invalid class is applied.
+
+You can add this CSS to your stylesheet to apply these styles to the table cells when the valid or invalid class is applied.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+can you provide the mouseup function except only highlight the letters that were selected in red or blue
+
+Certainly! Here is a modified version of the mouseup event listener that only highlights the letters that were selected in blue if the word is valid, and red otherwise:
+
+// Add a mouseup event listener to the table
+table.addEventListener("mouseup", function(event) {
+  // Remove the mouseover event listener from the table
+  table.removeEventListener("mouseover", mouseoverHandler);
+
+  // Get the selected cells
+  let cells = table.getElementsByClassName("selected");
+
+  // Get the word that was selected
+  let word = getSelectedWord();
+
+  // Check if the word is valid
+  isWordValid(word).then(isValid => {
+    // If the word is valid, highlight the cells in blue
+    // Otherwise, highlight the cells in red
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].classList.remove("selected");
+      cells[i].classList.add(isValid ? "valid" : "invalid");
+    }
+
+    // After 1 second, remove the "valid" or "invalid" class from the cells
+    setTimeout(() => {
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove("valid");
+        cells[i].classList.remove("invalid");
+      }
+    }, 1000);
+  });
+});
+
+This event listener removes the selected class from all cells, and applies the valid class to the selected cells if the word is valid, or the invalid class if the word is not valid. After 1 second, the valid and invalid classes are removed from the cells.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+the code above has a few problems. The word variable and word display is not reset after 1 second. Some of the cells with invalid or valid classes stay highlighted once the second is up.
+
+I apologize for the issues with the code. Here is a modified version of the mouseup event listener that should reset the word variable and word display after 1 second, and remove the valid and invalid classes from all cells after 1 second:
+
+// Add a mouseup event listener to the table
+table.addEventListener("mouseup", function(event) {
+  // Remove the mouseover event listener from the table
+  table.removeEventListener("mouseover", mouseoverHandler);
+
+  // Get the selected cells
+  let cells = table.getElementsByClassName("selected");
+
+  // Get the word that was selected
+  let word = getSelectedWord();
+
+  // Check if the word is valid
+  isWordValid(word).then(isValid => {
+    // If the word is valid, highlight the cells in blue
+    // Otherwise, highlight the cells in red
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].classList.remove("selected");
+      cells[i].classList.add(isValid ? "valid" : "invalid");
+    }
+
+    // After 1 second, remove the "valid" or "invalid" class from all cells
+    // and reset the word variable and word display
+    setTimeout(() => {
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove("valid");
+        cells[i].classList.remove("invalid");
+      }
+      word = "";
+      document.getElementById("word-display").innerHTML = "Word selected: ";
+    }, 1000);
+  });
+});
+
+This event listener removes the selected class from all cells, and applies the valid class to the selected cells if the word is valid, or the invalid class if the word is not valid. After 1 second, the valid and invalid classes are removed from all cells, and the word variable and word display are reset.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+That's ok! We all make mistakes
+
+I'm glad I could help clarify things for you. If you have any further questions or need further assistance with your project, don't hesitate to ask. I'm here to help!
+stanley.root@gmail.com
+The code above results in the following error in the broswer console: "Uncaught (in promise) TypeError: cells[i] is undefined"
+
+I apologize for the error. It looks like there is an issue with the cells variable. It's possible that the getElementsByClassName function is not returning any elements, which would cause the cells variable to be an empty array.
+
+One possible solution is to check if the cells array is empty before looping over it and applying the valid or invalid class. You can do this by adding an if statement before the loop:
+
+if (cells.length > 0) {
+  // Loop over the cells and apply the "valid" or "invalid" class
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove("selected");
+    cells[i].classList.add(isValid ? "valid" : "invalid");
+  }
+}
+
+This will ensure that the loop is only executed if there are elements in the cells array.
+
+I hope this helps! Let me know if you have any questions.
