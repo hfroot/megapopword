@@ -2091,3 +2091,38 @@ const letters = "AEIOU".repeat(4).concat("BCDFGHJKLMNPQRSTVWXYZSTNREGM").split("
 This code creates an array of letters that includes the vowels (A, E, I, O, U) 4 times and the consonants (B, C, D, etc.) once, as well as the letters S, T, N, R, G, M 3 times. The .concat() method is used to concatenate the string containing the consonants with a string containing the letters S, T, N, R, G, M 3 times. Then, the .split() method is used to split the resulting string into an array of individual letters.
 
 I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+I would like to keep a score for the game. Please generate the html element which will display the running score of the game, and everytime a valid word of 4 or more letters is found, add the letter count to that score
+
+Certainly! Here is the HTML code that you can use to create an element that displays the running score of the game:
+
+<!-- Score display element -->
+<div id="score-display">
+  Score: <span id="score">0</span>
+</div>
+
+This code creates a div element with an ID of "score-display", which you can use to display the running score of the game. The element also contains a span element with an ID of "score", which will display the current score.
+
+To update the score every time a valid word of 4 or more letters is found, you can use the following JavaScript code:
+
+// Get a reference to the score display element
+const scoreDisplay = document.getElementById("score-display");
+
+// Get a reference to the score element
+const scoreElement = document.getElementById("score");
+
+// Function to update the score
+function updateScore(points) {
+  // Increment the current score by the number of points
+  let score = parseInt(scoreElement.textContent) + points;
+
+  // Update the score element with the new score
+  scoreElement.textContent = score;
+}
+
+To use this function, you can call it and pass in the number of points to add to the score whenever a valid word of 4 or more letters is found. For example:
+
+// Add 10 points to the score
+updateScore(10);
+
+I hope this helps! Let me know if you have any questions.

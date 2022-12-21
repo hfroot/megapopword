@@ -89,6 +89,9 @@ function addInteractivity() {
           cells[i].classList.remove("selected");
           cells[i].classList.add(isValid ? "valid" : "invalid");
         }
+        if (isValid) {
+          updateScore(cells.length)
+        }
       } else {
         // If the word is less than 3 letters long, just remove the "selected" class from the cells
         for (let i = 0; i < cells.length; i++) {
@@ -136,4 +139,19 @@ async function isWordValid(word) {
 
   // If the array has at least one item and the first item's word property matches the word passed to the function, the word is valid
   return Array.isArray(data) && data.length > 0 && data[0].word.toLowerCase() === word.toLowerCase();
+}
+
+// Get a reference to the score display element
+const scoreDisplay = document.getElementById("score-display");
+
+// Get a reference to the score element
+const scoreElement = document.getElementById("score");
+
+// Function to update the score
+function updateScore(points) {
+  // Increment the current score by the number of points
+  let score = parseInt(scoreElement.textContent) + points;
+
+  // Update the score element with the new score
+  scoreElement.textContent = score;
 }
