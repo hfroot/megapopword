@@ -83,6 +83,10 @@ function addInteractivity() {
     // Remove the mouseover event listener from the table
     table.removeEventListener("mouseover", mouseoverHandler);
 
+    isWordValid(word).then(isValid => {
+      console.log(isValid); // Output: true
+    });
+
     // Highlight all the selected cells for one second
     let cells = table.getElementsByTagName("td");
     for (let i = 0; i < cells.length; i++) {
@@ -119,11 +123,6 @@ function addInteractivity() {
 
       // Update the word display element with the current word
       wordDisplay.textContent = word;
-
-      isWordValid(word).then(isValid => {
-        console.log(isValid); // Output: true
-      });
-
     }
   }
 }
