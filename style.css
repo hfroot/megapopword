@@ -25,7 +25,8 @@ body {
 
 #timer {
   font-size: 1em;
-  color: black;
+  background-color: black;
+  color: orange;
   text-align: center;
 }
 

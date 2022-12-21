@@ -15,3 +15,28 @@ for (let i = 0; i < 10; i++) {
     cell.textContent = letters[Math.floor(Math.random() * letters.length)];
   }
 }
+
+const timer = document.getElementById("timer");
+
+// Set the starting time in milliseconds
+const startTime = 3 * 60 * 1000;
+
+let time = startTime;
+
+// Update the timer every 1000 milliseconds (1 second)
+const interval = setInterval(() => {
+  // Calculate the minutes and seconds remaining
+  const minutes = Math.floor(time / (60 * 1000));
+  const seconds = Math.floor((time % (60 * 1000)) / 1000);
+
+  // Display the time in the format "MM:SS"
+  timer.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+
+  // Decrement the time by 1000 milliseconds (1 second)
+  time -= 1000;
+
+  // If the time reaches 0, stop the timer
+  if (time <= 0) {
+    clearInterval(interval);
+  }
+}, 1000);
