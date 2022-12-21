@@ -323,3 +323,47 @@ document.addEventListener("DOMContentLoaded", function() {
 This will ensure that the JavaScript code is executed after the DOM has been fully constructed, but before external resources (such as images) have been loaded.
 
 I hope these suggestions help! Let me know if you have any questions.
+
+stanley.root@gmail.com
+center all the letters in the middle of their square
+
+To center the letters in the middle of their square, you can use the display: flex and align-items: center properties in the CSS for the .cell element.
+
+Here is an example of how you can modify the CSS to center the letters:
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 10%;
+  background-color: darkgreen;
+  color: white;
+}
+
+In this example, the display: flex property specifies that the element should be a flex container, and the align-items: center property centers the flex items along the vertical axis. The justify-content: center property centers the flex items along the horizontal axis.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+the letters are shifted vertically by half a row - so that the top row letters are partially obscured and the bottom row letters are higher up than they need to be - why ?
+
+If the letters are shifted vertically by half a row, it could be due to the line-height property in the CSS for the .cell element.
+
+The line-height property specifies the height of a line of text in the element, and it can affect the vertical positioning of text within the element.
+
+To fix the issue, you can set the line-height property to 1 in the CSS for the .cell element:
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 10%;
+  background-color: darkgreen;
+  color: white;
+  line-height: 1;
+}
+
+This will set the line-height to the default value of 1, which should remove the vertical shift.
+
+I hope this helps! Let me know if you have any questions.

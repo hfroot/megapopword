@@ -13,9 +13,8 @@ for (let i = 0; i < 10; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
 
-    // Select a random letter from the letters array
-    const letter = letters[Math.floor(Math.random() * letters.length)];
-    cell.textContent = letter;
+    // Select a random letter from the letters array and assign it to the cell
+    cell.textContent = letters[Math.floor(Math.random() * letters.length)];
 
     row.appendChild(cell);
   }
