@@ -1243,3 +1243,86 @@ function mouseoverHandler(event) {
 In this example, the mouseup event listener is modified to add the highlighted class to all the cells that have the selected class, and then use a setTimeout() function to remove both the highlighted and selected classes after one second.
 
 I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+the letters are being highlighted by the default behaviour of the browser, can we disable this?
+
+Certainly! To disable the default highlighting behavior of the browser when the user clicks and drags the mouse, you can add the user-select: none CSS property to the element that you don't want to be highlighted.
+
+For example, if you don't want the letters in the table cells to be highlighted, you can add the following CSS to your stylesheet:
+
+table td {
+  user-select: none;
+}
+
+This will prevent the browser from highlighting the text in the table cells when the user clicks and drags the mouse.
+
+Alternatively, you can also use the onselectstart event to disable text selection in specific elements. To do this, you can add the following JavaScript code to your script:
+
+document.onselectstart = function() {
+  return false;
+}
+
+This will disable text selection in the entire document. If you only want to disable text selection in specific elements, you can add the onselectstart event listener to those elements instead.
+
+I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+If the user releases the mouse after it isn't hovering over the table, the same mouseup event should fire
+
+Certainly! Here is the modified code that will fire the mouseup event even if the mouse is released outside of the table:
+
+// Get a reference to the table element
+let table = document.getElementById("myTable");
+
+// Add a mousedown event listener to the table
+table.addEventListener("mousedown", function(event) {
+  // Get the target element that was clicked
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    // Add the "selected" class to the cell
+    target.classList.add("selected");
+
+    // Add a mouseover event listener to the table
+    table.addEventListener("mouseover", mouseoverHandler);
+  }
+});
+
+// Add a mouseup event listener to the document
+document.addEventListener("mouseup", function(event) {
+  // Remove the mouseover event listener from the table
+  table.removeEventListener("mouseover", mouseoverHandler);
+
+  // Highlight all the selected cells for one second
+  let cells = table.getElementsByTagName("td");
+  for (let i = 0; i < cells.length; i++) {
+    if (cells[i].classList.contains("selected")) {
+      cells[i].classList.add("highlighted");
+    }
+  }
+
+  setTimeout(() => {
+    // Remove the "highlighted" and "selected" classes from all cells
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].classList.remove("highlighted");
+      cells[i].classList.remove("selected");
+    }
+  }, 1000);
+});
+
+// Mouseover event handler function
+function mouseoverHandler(event) {
+  // Get the target element that the mouse is over
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    // Add the "selected" class to the cell
+    target.classList.add("selected");
+  }
+}
+
+In this example, the mouseup event listener is attached to the document element instead of the table element. This allows the event to be fired even if the mouse is released outside of the table.
+
+I hope this helps! Let me know if you have any questions.

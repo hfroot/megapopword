@@ -66,8 +66,8 @@ function addInteractivity() {
     }
   });
 
-  // Add a mouseup event listener to the table
-  table.addEventListener("mouseup", function(event) {
+  // Add a mouseup event listener to the document
+  document.addEventListener("mouseup", function(event) {
     // Remove the mouseover event listener from the table
     table.removeEventListener("mouseover", mouseoverHandler);
 

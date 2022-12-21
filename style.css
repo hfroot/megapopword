@@ -44,6 +44,10 @@ td {
   text-align: center;
 }
 
+table td {
+  user-select: none;
+}
+
 .selected {
   background-color: lightgreen;
 }
