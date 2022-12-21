@@ -71,11 +71,21 @@ function addInteractivity() {
     // Remove the mouseover event listener from the table
     table.removeEventListener("mouseover", mouseoverHandler);
 
-    // Remove the "selected" class from all cells
+    // Highlight all the selected cells for one second
     let cells = table.getElementsByTagName("td");
     for (let i = 0; i < cells.length; i++) {
-      cells[i].classList.remove("selected");
+      if (cells[i].classList.contains("selected")) {
+        cells[i].classList.add("highlighted");
+      }
     }
+
+    setTimeout(() => {
+      // Remove the "highlighted" and "selected" classes from all cells
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove("highlighted");
+        cells[i].classList.remove("selected");
+      }
+    }, 1000);
   });
 
   // Mouseover event handler function
