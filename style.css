@@ -31,9 +31,10 @@ body {
 }
 
 table {
-  width: 33%;
-  height: 100%;
+  width: 15rem;
+  height: 15rem;
   background-color: darkgreen;
+  font-family: monospace;
 }
 
 /* Other CSS for the table cells */
