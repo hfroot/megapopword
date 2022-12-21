@@ -282,3 +282,44 @@ In this example, the display: flex and align-items: center properties are applie
 The height property of the body element is set to 100% to take up the full height of the viewport, and the margin property is set to 0 to remove the default margin applied by the browser.
 
 I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+Using the javascript code from before, we are getting an error in the browser "Uncaught TypeError: grid is null" - why ?
+
+The "Uncaught TypeError: grid is null" error occurs when the JavaScript code is trying to access an element that is null or undefined. In this case, the error is likely occurring because the grid variable is null or undefined.
+
+There are a few potential reasons why the grid variable might be null or undefined:
+
+    Make sure that the element with the id attribute of "grid" exists in the HTML. If the element does not exist, the grid variable will be null when you try to access it using document.getElementById().
+
+    Make sure that the JavaScript code is executed after the element with the id attribute of "grid" has been loaded in the DOM. If the code is executed before the element is loaded, the grid variable will be null.
+
+    Check for any syntax errors in the JavaScript code. If there are syntax errors, the code may not be executed correctly and the grid variable may be undefined.
+
+I hope these suggestions help! If you are still having issues, please provide more information about your code and I will try to assist further.
+stanley.root@gmail.com
+How do we ensure that the javascript is executed after the element has been loaded in the DOM ?
+
+There are a few different ways to ensure that the JavaScript code is executed after the element has been loaded in the DOM:
+
+    You can place the JavaScript code at the bottom of the body element, after the element with the id attribute of "grid". This will ensure that the element is loaded in the DOM before the JavaScript code is executed.
+
+    You can use the window.onload event to wrap the JavaScript code in a function, like this:
+
+window.onload = function() {
+  const grid = document.getElementById("grid");
+  // Your code goes here
+};
+
+This will ensure that the JavaScript code is executed after the window object has finished loading, including all elements in the DOM.
+
+    You can use the addEventListener() method to attach an event listener to the DOMContentLoaded event, like this:
+
+document.addEventListener("DOMContentLoaded", function() {
+  const grid = document.getElementById("grid");
+  // Your code goes here
+});
+
+This will ensure that the JavaScript code is executed after the DOM has been fully constructed, but before external resources (such as images) have been loaded.
+
+I hope these suggestions help! Let me know if you have any questions.
