@@ -90,9 +90,16 @@ function addInteractivity() {
     isWordValid(word).then(isValid => {
       // If the word is valid, highlight the cells in blue
       // Otherwise, highlight the cells in red
-      for (let i = 0; i < cells.length; i++) {
-        cells[i].classList.remove("selected");
-        cells[i].classList.add(isValid ? "valid" : "invalid");
+      if (word.length > 3) {
+        for (let i = 0; i < cells.length; i++) {
+          cells[i].classList.remove("selected");
+          cells[i].classList.add(isValid ? "valid" : "invalid");
+        }
+      } else {
+        // If the word is less than 3 letters long, just remove the "selected" class from the cells
+        for (let i = 0; i < cells.length; i++) {
+          cells[i].classList.remove("selected");
+        }
       }
 
       // After 1 second, remove the "valid" or "invalid" class from all cells

@@ -1975,3 +1975,28 @@ for (let i = 0; i < elements.length; i++) {
 This will ensure that the elements in the array are fixed and will not change as the loop is executing.
 
 I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+Could you modify the following code to only add the valid or invalid class when the word is over 3 letters long
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove("selected");
+        cells[i].classList.add(isValid ? "valid" : "invalid");
+      }
+
+Certainly! Here is the modified code that will only add the valid or invalid class to the selected cells if the word is at least 3 letters long:
+
+if (word.length >= 3) {
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove("selected");
+    cells[i].classList.add(isValid ? "valid" : "invalid");
+  }
+} else {
+  // If the word is less than 3 letters long, just remove the "selected" class from the cells
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove("selected");
+  }
+}
+
+This code checks the length of the word variable, and if it is at least 3 letters long, it applies the valid or invalid class to the selected cells. Otherwise, it just removes the selected class from the cells.
+
+I hope this helps! Let me know if you have any questions.
