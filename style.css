@@ -66,3 +66,17 @@ td.invalid {
   pointer-events: none;
 }
 
+.red-button {
+  background-color: red;
+  color: lightgreen;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Style the disabled button */
+button:disabled {
+  background-color: grey;
+  cursor: default;
+}
+

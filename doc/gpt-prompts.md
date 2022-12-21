@@ -2592,3 +2592,155 @@ function disableTable() {
 setTimeout(disableTable, 3 * 60 * 1000);
 
 This will add the disabled class to the table element after 3 minutes, which will set the opacity to 0.5 and pointer-events to none. This will make the table appear grey and not be interactive.
+
+stanley.root@gmail.com
+Add one button in red with light green lettering to the left of the grid, centered vertically. The top button contains the words "Play new game?". When clicked, this removes the disabled class, sets the current score to 0 and resets the timer to 3 minutes.
+
+Here is the HTML for the button:
+
+<button id="newGameButton" class="red-button">Play new game?</button>
+
+Here is the CSS for the button:
+
+.red-button {
+  background-color: red;
+  color: lightgreen;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+And here is the JavaScript code to handle the click event:
+
+const newGameButton = document.getElementById("newGameButton");
+newGameButton.addEventListener("click", function() {
+  // Remove the "disabled" class from the table
+  table.classList.remove("disabled");
+
+  // Set the current score to 0
+  currentScore = 0;
+  scoreElement.textContent = currentScore;
+
+  // Reset the timer to 3 minutes
+  timeLeft = 180;
+});
+
+Note that this code assumes that you have a global variable table that references the table element and a global variable scoreElement that references the element that displays the current score. It also assumes that you have a global variable timeLeft that tracks the amount of time left in the game.
+stanley.root@gmail.com
+Whilst the timer is not finished, the new game button should be disabled, when the timer ends, the button should be enabled
+
+To add a button to the left of the grid, you can use the following HTML code:
+
+<button id="new-game-button" disabled>Play new game?</button>
+<table id="grid">
+  <!-- table content -->
+</table>
+
+To center the button vertically, you can use the following CSS code:
+
+#new-game-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* other styles */
+}
+
+To style the button, you can use the following CSS code:
+
+#new-game-button {
+  /* other styles */
+  color: lightgreen;
+  background-color: red;
+}
+
+To enable or disable the button, you can use the following JavaScript code:
+
+let newGameButton = document.getElementById("new-game-button");
+
+// Enable the button
+newGameButton.disabled = false;
+
+// Disable the button
+newGameButton.disabled = true;
+
+To reset the timer and the current score, you can use the following JavaScript code:
+
+// Reset the timer to 3 minutes
+timer.innerHTML = "03:00";
+
+// Set the current score to 0
+currentScore.innerHTML = "0";
+
+To detect when the timer ends, you can use the following JavaScript code:
+
+let timer = document.getElementById("timer");
+
+// When the timer ends, set the new game button to enabled
+if (timer.innerHTML === "00:00") {
+  newGameButton.disabled = false;
+}
+
+To detect when the user clicks the new game button, you can use the following JavaScript code:
+
+newGameButton.addEventListener("click", function() {
+  // Reset the timer to 3 minutes
+  timer.innerHTML = "03:00";
+
+  // Set the current score to 0
+  currentScore.innerHTML = "0";
+
+  // Enable the new game button
+  newGameButton.disabled = false;
+});
+
+stanley.root@gmail.com
+when the new game button is disabled, it should be grey and the mouse pointer shouldn't change
+
+To create a square child element within a rectangular parent container, you can use the padding-bottom trick. This involves setting the padding-bottom of the parent element to be the same value as the width of the parent element, and then setting the width of the child element to be 100%.
+
+/* Make the parent element a square */
+#parent {
+  width: 500px;
+  padding-bottom: 500px;
+  position: relative;
+}
+
+/* Make the child element a square */
+#child {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+To disable the "Play new game?" button when the timer is not finished, you can use the disabled attribute. To change the appearance of the button when it is disabled, you can use the :disabled pseudo-class in your CSS.
+
+/* Style the disabled button */
+button:disabled {
+  background-color: grey;
+  cursor: default;
+}
+
+To enable the button when the timer ends, you can use JavaScript to remove the disabled attribute from the button element when the timer is finished.
+
+// Get a reference to the button element
+let button = document.getElementById("button");
+
+// Add an event listener for the timer's "end" event
+timer.addEventListener("end", function() {
+  // Enable the button
+  button.disabled = false;
+});
+
+To reset the timer and the current score when the "Play new game?" button is clicked, you can add an event listener for the button's click event and reset the timer and score in the event handler function.
+
+// Add an event listener for the button's click event
+button.addEventListener("click", function() {
+  // Reset the timer
+  timer.reset();
+
+  // Reset the current score
+  score = 0;
+});
+

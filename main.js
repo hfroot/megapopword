@@ -5,6 +5,8 @@ const ordinaryConsonants = "BCDFHLPVWY".repeat(2)
 const devilishConsonants = "JKQXZ"
 const letters = vowels.concat(usefulConsonants).concat(ordinaryConsonants).concat(devilishConsonants).split("");
 
+const MAX_TIME = 3 * 60 * 1000;
+
 function populateGrid() {
   const grid = document.getElementById("grid");
 
@@ -23,14 +25,14 @@ function populateGrid() {
 }
 populateGrid()
 
-function setupTimer() {
+function startTimer() {
   const timer = document.getElementById("timer");
 
   // Set the starting time in milliseconds
-  const startTime = 3 * 60 * 1000;
+  const startTime = MAX_TIME;
 
   let time = startTime;
-
+  disableNewGameButton();
   // Update the timer every 1000 milliseconds (1 second)
   const interval = setInterval(() => {
     // Calculate the minutes and seconds remaining
@@ -47,10 +49,11 @@ function setupTimer() {
     if (time <= 0) {
       clearInterval(interval);
       disableTable();
+      enableNewGameButton();
     }
   }, 1000);
 }
-setupTimer()
+startTimer()
 
 function addInteractivity() {
   // Get a reference to the table element
@@ -209,4 +212,30 @@ async function descendColumns() {
 function disableTable() {
   let table = document.getElementById("grid");
   table.classList.add("disabled");
+}
+
+function setupNewGameButton() {
+  let table = document.getElementById("grid");
+  const newGameButton = document.getElementById("newGameButton");
+  newGameButton.addEventListener("click", function() {
+    // Remove the "disabled" class from the table
+    table.classList.remove("disabled");
+
+    // Set the current score to 0
+    const currentScore = 0;
+    scoreElement.textContent = currentScore;
+
+    startTimer();
+  });
+}
+setupNewGameButton();
+
+function enableNewGameButton() {
+  const newGameButton = document.getElementById("newGameButton");
+  newGameButton.disabled = false
+}
+
+function disableNewGameButton() {
+  const newGameButton = document.getElementById("newGameButton");
+  newGameButton.disabled = true
 }
