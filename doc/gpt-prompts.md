@@ -230,3 +230,55 @@ By setting the height property of the html element to 100%, you are telling the 
 Keep in mind that you may also need to set the height property of any intermediate parent elements to 100% if the html element is not a direct parent of the #grid element.
 
 I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+How do we vertically center the grid on the page ?
+
+To vertically center the grid on the page, you can use the display: flex and align-items: center properties in the CSS for the parent element of the grid.
+
+Here is an example of how you can vertically center the grid:
+
+#parent {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+#grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 33%;
+  background-color: darkgreen;
+}
+
+In this example, the #parent element is the parent of the #grid element and has a height of 100% to take up the full height of the viewport. The display: flex and align-items: center properties are applied to the #parent element to vertically center the #grid element.
+
+Keep in mind that the #parent element should have a defined height in order for the vertical centering to work.
+
+I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+could you change the above code to also horizontally center grid, and the parent element should be the body element
+
+Sure! Here is an example of how you can modify the code to horizontally and vertically center the grid within the body element:
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+}
+
+#grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 33%;
+  background-color: darkgreen;
+}
+
+In this example, the display: flex and align-items: center properties are applied to the body element to vertically center the #grid element, and the justify-content: center property is used to horizontally center the #grid element.
+
+The height property of the body element is set to 100% to take up the full height of the viewport, and the margin property is set to 0 to remove the default margin applied by the browser.
+
+I hope this helps! Let me know if you have any questions.
