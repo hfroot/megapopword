@@ -119,7 +119,23 @@ function addInteractivity() {
 
       // Update the word display element with the current word
       wordDisplay.textContent = word;
+
+      isWordValid(word).then(isValid => {
+        console.log(isValid); // Output: true
+      });
+
     }
   }
 }
 addInteractivity()
+
+async function isWordValid(word) {
+  // Make a GET request to the Datamuse API to check if the word is valid
+  const response = await fetch(`https://api.datamuse.com/words?sp=${word}`);
+
+  // Convert the response to JSON
+  const data = await response.json();
+
+  // If the array has at least one item and the first item's word property matches the word passed to the function, the word is valid
+  return Array.isArray(data) && data.length > 0 && data[0].word === word;
+}
