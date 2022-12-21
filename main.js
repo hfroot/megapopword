@@ -84,7 +84,7 @@ function addInteractivity() {
     table.removeEventListener("mouseover", mouseoverHandler);
 
     // Get the selected cells
-    let cells = table.getElementsByClassName("selected");
+    let cells = Array.from(table.getElementsByClassName("selected"));
 
     // Check if the word is valid
     isWordValid(word).then(isValid => {
@@ -98,12 +98,9 @@ function addInteractivity() {
       // After 1 second, remove the "valid" or "invalid" class from all cells
       // and reset the word variable and word display
       setTimeout(() => {
-        if (cells.length > 0) {
-          // Loop over the cells and apply the "valid" or "invalid" class
-          for (let i = 0; i < cells.length; i++) {
-            cells[i].classList.remove("selected");
-            cells[i].classList.add(isValid ? "valid" : "invalid");
-          }
+        // Loop over the cells and apply the "valid" or "invalid" class
+        for (let i = 0; i < cells.length; i++) {
+          cells[i].classList.remove(isValid ? "valid" : "invalid");
         }
         word = "";
         wordDisplay.textContent = word;

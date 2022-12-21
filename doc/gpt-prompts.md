@@ -1930,3 +1930,48 @@ if (cells.length > 0) {
 This will ensure that the loop is only executed if there are elements in the cells array.
 
 I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+That's ok! We all make mistakes
+
+I'm glad I could help clarify things for you. If you have any further questions or need further assistance with your project, don't hesitate to ask. I'm here to help!
+stanley.root@gmail.com
+The code above results in the following error in the broswer console: "Uncaught (in promise) TypeError: cells[i] is undefined"
+
+I apologize for the error. It looks like there is an issue with the cells variable. It's possible that the getElementsByClassName function is not returning any elements, which would cause the cells variable to be an empty array.
+
+One possible solution is to check if the cells array is empty before looping over it and applying the valid or invalid class. You can do this by adding an if statement before the loop:
+
+if (cells.length > 0) {
+  // Loop over the cells and apply the "valid" or "invalid" class
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove("selected");
+    cells[i].classList.add(isValid ? "valid" : "invalid");
+  }
+}
+
+This will ensure that the loop is only executed if there are elements in the cells array.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+how do I remove a class from all elements in a DOM that have that class ?
+
+To remove a class from all elements in the DOM that have that class, you can use the following code:
+
+let elements = document.getElementsByClassName("class-name");
+for (let i = 0; i < elements.length; i++) {
+  elements[i].classList.remove("class-name");
+}
+
+This code gets a list of all elements with the class "class-name" using the getElementsByClassName function, and then loop over the elements and remove the "class-name" class using the classList.remove method.
+
+Note that the getElementsByClassName function returns a live HTMLCollection, which means that it updates automatically as elements are added or removed from the DOM. This can be useful, but it also means that the elements in the collection may change as the loop is executing. To avoid any issues with this, you can convert the HTMLCollection to an array using the Array.from function:
+
+let elements = Array.from(document.getElementsByClassName("class-name"));
+for (let i = 0; i < elements.length; i++) {
+  elements[i].classList.remove("class-name");
+}
+
+This will ensure that the elements in the array are fixed and will not change as the loop is executing.
+
+I hope this helps! Let me know if you have any questions.
