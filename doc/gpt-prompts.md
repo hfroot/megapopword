@@ -219,3 +219,14 @@ This will remove the default margin and allow the body element to take up the fu
 Alternatively, you can use a reset stylesheet to remove the default margins and padding applied by the browser to various elements. This can be helpful if you want to ensure that your layout is consistent across different browsers.
 
 I hope this helps! Let me know if you have any questions.
+
+stanley.root@gmail.com
+We had to add a heigh of 100% on the html parent element
+
+If you had to add a height of 100% to the html element to make the body element take up the full height of the screen, it may be because the html element is the direct parent of the body element and it has a default height of auto.
+
+By setting the height property of the html element to 100%, you are telling the element to take up the full height of the viewport. This in turn causes the body element to also take up the full height of the viewport, since it is a child of the html element.
+
+Keep in mind that you may also need to set the height property of any intermediate parent elements to 100% if the html element is not a direct parent of the #grid element.
+
+I hope this helps! Let me know if you have any questions.
