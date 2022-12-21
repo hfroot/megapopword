@@ -49,3 +49,107 @@ This is just one example of a simple file structure that you can use for your ga
 
 I hope this helps! Let me know if you have any questions.
 
+stanley.root@gmail.com
+Make a 10 by 10 grid occupying one third of the screen in the centre. Each square has color: dark green and letter color: white. Populate the grid cells with random letters.
+
+Here is an example of how you can create a 10 by 10 grid using HTML, CSS, and JavaScript:
+
+HTML
+
+<div id="grid">
+  <!-- Create 10 rows -->
+  <div class="row">
+    <!-- Create 10 cells -->
+    <div class="cell">A</div>
+    <div class="cell">B</div>
+    <!-- ... -->
+  </div>
+  <!-- Create 10 rows -->
+  <div class="row">
+    <!-- Create 10 cells -->
+    <div class="cell">C</div>
+    <div class="cell">D</div>
+    <!-- ... -->
+  </div>
+  <!-- ... -->
+</div>
+
+CSS
+
+#grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 33%;
+  margin: 0 auto;
+  background-color: darkgreen;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 10%;
+  font-size: 24px;
+  color: white;
+}
+
+JavaScript
+
+const grid = document.getElementById("grid");
+
+// Create an array of letters
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+// Create 10 rows
+for (let i = 0; i < 10; i++) {
+  const row = document.createElement("div");
+  row.classList.add("row");
+
+  // Create 10 cells
+  for (let j = 0; j < 10; j++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+
+    // Select a random letter from the letters array
+    const letter = letters[Math.floor(Math.random() * letters.length)];
+    cell.textContent = letter;
+
+    row.appendChild(cell);
+  }
+
+  grid.appendChild(row);
+}
+
+This code will create a 10 by 10 grid that occupies one third of the screen in the center, with each square having a color of dark green and a letter color of white. The cells will be populated with random letters from the alphabet.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+Could you generate the template html file which links to the javascript and style files ?
+
+Sure! Here is an example of a template HTML file that links to JavaScript and CSS files:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Your game content goes here -->
+    <script src="main.js"></script>
+  </body>
+</html>
+
+This template includes a title element that specifies the title of the page, and a link element that links to a CSS file called style.css. You can add additional link elements to link to additional CSS files if needed.
+
+The script element at the bottom of the body element links to a JavaScript file called main.js. You can add additional script elements to link to additional JavaScript files if needed.
+
+You can use this template as a starting point for your game and customize it to fit your specific needs. For example, you can add additional elements to the head and body elements to include additional content or metadata.
+
+I hope this helps! Let me know if you have any questions.

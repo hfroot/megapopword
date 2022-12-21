@@ -1,10 +1,12 @@
-Megapopword – coding instructions
+# Megapopword – coding instructions
 
 ## Introductory prompt 
 a.	Can you write code in javascript, HTML and CSS to make an online word game if I give you the following 9 instructions?
 
 ## 1.	Make the Grid
 a.	Make a 10 by 10 grid occupying one third of the screen in the centre.  Each square has color: dark green and letter color: white.  All letters are chosen at random with two exceptions. The six letters { a, e, i, o, u, y} are 4 times more likely than average to be chosen, and the six letters {s,t,n,r,g,m}  are twice more likely than average to be chosen.
+
+Make a 10 by 10 grid occupying one third of the screen in the centre. Each square has color: dark green and letter color: white. Populate the grid cells with random letters.
 
 ## 2.	User name box.
 a.	At the bottom of the square, in the middle and separated by the width of two rows is a text box 10 letters wide, the same as the grid, outlined in black, pink background and blue lettering.  Centred below this box, is the title “User Name”. The user can type his name in this text box.
