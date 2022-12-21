@@ -546,3 +546,185 @@ td {
 This will make the td elements behave as block-level elements, which should fix the issue with the letters appearing in a single line.
 
 I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+Can you update the javascript code to use the HTMLTableRowElement functions?
+
+Sure! Here is an example of how you can update the JavaScript code to use the HTMLTableRowElement functions:
+
+const grid = document.getElementById("grid");
+
+// Create an array of letters
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+// Create 10 rows
+for (let i = 0; i < 10; i++) {
+  const row = grid.insertRow();
+
+  // Create 10 cells
+  for (let j = 0; j < 10; j++) {
+    const cell = row.insertCell();
+
+    // Select a random letter from the letters array and assign it to the cell
+    cell.textContent = letters[Math.floor(Math.random() * letters.length)];
+  }
+}
+
+In this example, the insertRow() function is used to create a new row in the grid table, and the insertCell() function is used to create a new cell in the row. The textContent property is used to assign a random letter from the letters array to the cell.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+the table cells should be square
+
+To make the table cells square, you can set the height of the td element to the same value as the width in the CSS:
+
+td {
+  display: block;
+  width: 10%;
+  height: 10%;
+  color: white;
+  text-align: center;
+}
+
+In this example, the width and height of the td element are both set to 10%, which will make the cells square.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+We would like to add a title and timer to the page. Above the grid, add the title "MegaPopWord" written in black letters twice the size of the letters on the grid. 
+
+To add a title and timer to the page, you can add a h1 element for the title and a div element for the timer to the HTML, and use CSS to style them.
+
+Here is an example of how you can modify the HTML and CSS to add a title and timer to the page:
+
+HTML
+
+<h1 id="title">MegaPopWord</h1>
+<div id="timer"></div>
+<table id="grid">
+  <!-- Create 10 rows -->
+  <tr>
+    <!-- Create 10 cells -->
+    <td></td>
+    <td></td>
+    <!-- ... -->
+  </tr>
+  <!-- Create 10 rows -->
+  <tr>
+    <!-- Create 10 cells -->
+    <td></td>
+    <td></td>
+    <!-- ... -->
+  </tr>
+  <!-- ... -->
+</table>
+
+CSS
+
+#title {
+  font-size: 2em;
+  color: black;
+  text-align: center;
+}
+
+#timer {
+  font-size: 1em;
+  color: black;
+  text-align: center;
+}
+
+table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  height: 100%;
+  background-color: darkgreen;
+}
+
+td {
+  display: block;
+  width: 10%;
+  height: 10%;
+  color: white;
+  text-align: center;
+}
+
+In this example, the HTML includes a h1 element with the id title for the title, and a div element with the id timer for the timer. The CSS sets the font size and color of the h1 element to create the title, and sets the font size and color of the div element to create the timer.
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+We will be copying and pasting your code into our code, so you don't need to repeat code you have already generated
+
+Understood. If you are copying and pasting the code I provided into your project, you should only need to include the new HTML, CSS, and JavaScript code that I provided for the title and timer.
+
+Here is a summary of the new code that you will need to add:
+
+HTML
+
+<h1 id="title">MegaPopWord</h1>
+<div id="timer"></div>
+
+CSS
+
+#title {
+  font-size: 2em;
+  color: black;
+  text-align: center;
+}
+
+#timer {
+  font-size: 1em;
+  color: black;
+  text-align: center;
+}
+
+I hope this helps! Let me know if you have any questions.
+stanley.root@gmail.com
+The title is appearing to the left of the grid, rather than above it - how do we fix this?
+
+To fix the issue with the title appearing to the left of the grid instead of above it, you can wrap the h1 element and the table element in a div element and apply the display: flex and flex-direction: column properties to the div element:
+
+<div id="container">
+  <h1 id="title">MegaPopWord</h1>
+  <table id="grid">
+    <!-- Create 10 rows -->
+    <tr>
+      <!-- Create 10 cells -->
+      <td></td>
+      <td></td>
+      <!-- ... -->
+    </tr>
+    <!-- Create 10 rows -->
+    <tr>
+      <!-- Create 10 cells -->
+      <td></td>
+      <td></td>
+      <!-- ... -->
+    </tr>
+    <!-- ... -->
+  </table>
+</div>
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#title {
+  font-size: 2em;
+  color: black;
+  text-align: center;
+}
+
+table {
+  width: 33%;
+  height: 100%;
+  background-color: darkgreen;
+}
+
+/* Other CSS for the table cells */
+
+In this example, the div element with the id container is used to wrap the h1 element and the table element. The display: flex and flex-direction: column properties are applied to the div element to make the h1 element and the table element stack vertically. The align-items: center and justify-content: center properties are applied to the div element to center the h1 element and the table element horizontally and vertically.
+
+I hope this helps! Let me know if you have any questions.
