@@ -46,3 +46,48 @@ function setupTimer() {
   }, 1000);
 }
 setupTimer()
+
+function addInteractivity() {
+  // Get a reference to the table element
+  let table = document.getElementById("grid");
+
+  // Add a mousedown event listener to the table
+  table.addEventListener("mousedown", function(event) {
+    // Get the target element that was clicked
+    let target = event.target;
+
+    // If the target is a table cell
+    if (target.tagName === "TD") {
+      // Add the "selected" class to the cell
+      target.classList.add("selected");
+
+      // Add a mouseover event listener to the table
+      table.addEventListener("mouseover", mouseoverHandler);
+    }
+  });
+
+  // Add a mouseup event listener to the table
+  table.addEventListener("mouseup", function(event) {
+    // Remove the mouseover event listener from the table
+    table.removeEventListener("mouseover", mouseoverHandler);
+
+    // Remove the "selected" class from all cells
+    let cells = table.getElementsByTagName("td");
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].classList.remove("selected");
+    }
+  });
+
+  // Mouseover event handler function
+  function mouseoverHandler(event) {
+    // Get the target element that the mouse is over
+    let target = event.target;
+
+    // If the target is a table cell
+    if (target.tagName === "TD") {
+      // Add the "selected" class to the cell
+      target.classList.add("selected");
+    }
+  }
+}
+addInteractivity()

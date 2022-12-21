@@ -43,3 +43,7 @@ td {
   color: white;
   text-align: center;
 }
+
+.selected {
+  background-color: lightgreen;
+}
