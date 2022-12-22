@@ -8,6 +8,7 @@ body {
   justify-content: center;
   height: 100%;
   margin: 0;
+  font-size: 25px;
 }
 
 #container {
@@ -24,17 +25,34 @@ body {
 }
 
 #timer {
-  font-size: 1em;
+  font-size: 1.5em;
   background-color: black;
   color: orange;
   text-align: center;
 }
 
 table {
-  width: 15rem;
-  height: 15rem;
+  width: calc(70vh - 20px);
+  height: calc(70vh - 20px);
   background-color: darkgreen;
   font-family: monospace;
+}
+
+@media (min-height: 2500px) {
+  table {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+@media (orientation: portrait) {
+  table {
+    width: calc(100vw - 20px);
+    height: calc(100vw - 20px);
+  }
+  body {
+    font-size: calc(25px * 2);
+  }
 }
 
 /* Other CSS for the table cells */
@@ -72,6 +90,7 @@ td.invalid {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+  font-size: 1em;
 }
 
 /* Style the disabled button */
