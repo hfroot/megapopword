@@ -10,6 +10,9 @@ const MAX_TIME = MINUTES * 60 * 1000;
 
 let highScore = 0; // global variable to store the high score
 
+// Initialize the word variable
+let word = "";
+
 function populateGrid() {
   const grid = document.getElementById("grid");
 
@@ -63,88 +66,95 @@ function addInteractivity() {
   // Get a reference to the table element
   let table = document.getElementById("grid");
 
-  // Initialize the word variable
-  let word = "";
-
-  // Add a mousedown event listener to the table
-  table.addEventListener("mousedown", function(event) {
-    // Get the target element that was clicked
-    let target = event.target;
-
-    // If the target is a table cell
-    if (target.tagName === "TD") {
-      // Add the "selected" class to the cell
-      target.classList.add("selected");
-
-      // Update the word variable with the letter in the cell
-      word += target.textContent;
-
-      // Add a mouseover event listener to the table
-      table.addEventListener("mouseover", mouseoverHandler);
-    }
-  });
-
-  // Add a mouseup event listener to the table
-  document.addEventListener("mouseup", function(event) {
-    // Remove the mouseover event listener from the table
-    table.removeEventListener("mouseover", mouseoverHandler);
-
-    // Get the selected cells
-    let cells = Array.from(document.getElementsByClassName("selected"));
-
-    // Check if the word is valid
-    isWordValid(word).then(isValid => {
-      // If the word is valid, highlight the cells in blue
-      // Otherwise, highlight the cells in red
-      if (word.length > 3) {
-        for (let i = 0; i < cells.length; i++) {
-          cells[i].classList.remove("selected");
-          cells[i].classList.add(isValid ? "valid" : "invalid");
-        }
-        if (isValid) {
-          updateScore(cells.length);
-          playWordSound();
-        }
-      } else {
-        // If the word is less than 3 letters long, just remove the "selected" class from the cells
-        for (let i = 0; i < cells.length; i++) {
-          cells[i].classList.remove("selected");
-        }
-      }
-
-      // After 1 second, remove the "valid" or "invalid" class from all cells
-      // and reset the word variable and word display
-      setTimeout(() => {
-        // Remove the text content of the cells
-        for (let i = 0; i < cells.length; i++) {
-          if (cells[i].classList.contains("valid")) {
-            cells[i].textContent = "";
-          }
-          cells[i].classList.remove(isValid ? "valid" : "invalid");
-        }
-        descendColumns()
-        word = "";
-      }, 1000);
-    })
-  });
-
-
-  // Mouseover event handler function
-  function mouseoverHandler(event) {
-    // Get the target element that the mouse is over
-    let target = event.target;
-
-    // If the target is a table cell
-    if (target.tagName === "TD") {
-      // Add the "selected" class to the cell
-      target.classList.add("selected");
-
-      // Update the word variable with the letter in the cell
-      word += target.textContent;
-    }
-  }
+  table.addEventListener("mousedown", mouseDownHandler);
+  document.addEventListener("mouseup", mouseUpHandler);
+  table.addEventListener("touchstart", mouseDownHandler);
+  document.addEventListener("touchend", mouseUpHandler);
 }
 addInteractivity()
+
+function mouseDownHandler(event) {
+  // Get the target element that was clicked/touched
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    // Add the "selected" class to the cell
+    target.classList.add("selected");
+
+    // Update the word variable with the letter in the cell
+    word += target.textContent;
+
+    // Get a reference to the table element
+    let table = document.getElementById("grid");
+
+    table.addEventListener("mouseover", mouseoverHandler);
+    table.addEventListener("touchmove", mouseoverHandler);
+  }
+}
+
+// Mouseover event handler function
+function mouseoverHandler(event) {
+  // Get the target element that the mouse is over
+  let target = event.target;
+
+  // If the target is a table cell
+  if (target.tagName === "TD") {
+    // Add the "selected" class to the cell
+    target.classList.add("selected");
+
+    // Update the word variable with the letter in the cell
+    word += target.textContent;
+  }
+}
+
+function mouseUpHandler(event) {
+  // Get a reference to the table element
+  let table = document.getElementById("grid");
+
+  // Remove the mouseover event listener from the table
+  table.removeEventListener("mouseover", mouseoverHandler);
+  // Remove the touchmove event listener from the table
+  table.removeEventListener("touchmove", mouseoverHandler);
+
+  // Get the selected cells
+  let cells = Array.from(document.getElementsByClassName("selected"));
+
+  // Check if the word is valid
+  isWordValid(word).then(isValid => {
+    // If the word is valid, highlight the cells in blue
+    // Otherwise, highlight the cells in red
+    if (word.length > 3) {
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove("selected");
+        cells[i].classList.add(isValid ? "valid" : "invalid");
+      }
+      if (isValid) {
+        updateScore(cells.length);
+        playWordSound();
+      }
+    } else {
+      // If the word is less than 3 letters long, just remove the "selected" class from the cells
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove("selected");
+      }
+    }
+
+    // After 1 second, remove the "valid" or "invalid" class from all cells
+    // and reset the word variable and word display
+    setTimeout(() => {
+      // Remove the text content of the cells
+      for (let i = 0; i < cells.length; i++) {
+        if (cells[i].classList.contains("valid")) {
+          cells[i].textContent = "";
+        }
+        cells[i].classList.remove(isValid ? "valid" : "invalid");
+      }
+      descendColumns()
+      word = "";
+    }, 1000);
+  })
+}
 
 async function isWordValid(word) {
   // Make a GET request to the Datamuse API to check if the word is valid
